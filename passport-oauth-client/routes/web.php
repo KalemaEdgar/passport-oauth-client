@@ -21,17 +21,18 @@ Route::get('/redirect', function () {
     $query = http_build_query([
         'client_id' => env('PASSPORT_CLIENT_ID'),
         'redirect_uri' => env('APP_URL').'/callback',
-        'response_type' => 'token',
+        'response_type' => 'code',
         'scope' => '',
-    ]);
+    ]);    
 
     return redirect(env('BOOKSTORE_URL').'/oauth/authorize?'.$query);
 });
 
 Route::get('/callback', function (Request $request) {
-    dd();
-
+    
     $http = new GuzzleHttp\Client;
+
+    // dd(env('BOOKSTORE_URL').'/oauth/token');
 
     $response = $http->post(env('BOOKSTORE_URL').'/oauth/token', [
         'form_params' => [
@@ -42,7 +43,11 @@ Route::get('/callback', function (Request $request) {
             'code' => $request->code,
         ],
     ]);
+
+    // dd($response);
+
     $tokens = json_decode((string) $response->getBody(), true);
+    // dd($tokens);
     $user = fetchUser($tokens['access_token'], $http);
 
     return view('authenticated', array_merge($tokens, $user));
@@ -52,7 +57,7 @@ function fetchUser($accessToken, $http){
     $response = $http->get(env('BOOKSTORE_URL').'/api/user', [
         'headers' =>[
             'Accept' => 'application/json',
-            'Authorization' => 'Bearer '.$accessToken,
+            'Authorization' => 'Bearer ' . $accessToken,
         ]
     ]);
 
