@@ -1077,8 +1077,8 @@ autoprefixer@^9.4.2:
     postcss "^7.0.14"
     postcss-value-parser "^3.3.1"
 
-axios@^0.16.2:
-  version "0.16.2"
+axios@^0.18.1:
+  version "0.18.1"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.16.2.tgz#ba4f92f17167dfbab40983785454b9ac149c3c6d"
   integrity sha1-uk+S8XFn37q0CYN4VFS5rBScPG0=
   dependencies:
@@ -2167,7 +2167,7 @@ devour-client@^2.0.17:
   resolved "https://registry.yarnpkg.com/devour-client/-/devour-client-2.0.17.tgz#461f48378414e931b4e1a7cd8c777017724c6f64"
   integrity sha512-anxcL+KQmFs/bK2AF/XmNX8BrmdEui8Ass0BO3zLUIagl9BGsUpCfoBlcFkt71lO2nKOEEDAsDLtPyErHzwUuQ==
   dependencies:
-    axios "^0.16.2"
+    axios "^0.18.1"
     es6-promise "^3.1.2"
     lodash "^4.11.2"
     minilog "^3.0.0"
